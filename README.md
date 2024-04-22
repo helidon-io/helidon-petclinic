@@ -1,44 +1,93 @@
-*This repository acts as a template for all of Oracle’s GitHub repositories. It contains information about the guidelines for those repositories. All files and sections contained in this template are mandatory, and a GitHub app ensures alignment with these guidelines. To get started with a new repository, replace the italic paragraphs with the respective text for your project.*
+# Helidon Petclinic REST Service
 
-# Project name
+Helidon MP version of the Spring Petclinic REST service (see [spring-petclinic-rest](https://github.com/spring-petclinic/spring-petclinic-rest)). **There is no UI**.
+The [spring-petclinic-angular project](https://github.com/spring-petclinic/spring-petclinic-angular) is an Angular front-end application which consumes the REST API.
 
-*Describe your project's features, functionality and target audience*
+## Build and run
 
-## Installation
+### Locally
 
-*Provide detailed step-by-step installation instructions. You can name this section **How to Run** or **Getting Started** instead of **Installation** if that's more acceptable for your project*
+With JDK21
 
-## Documentation
+```bash
+mvn package
+java -jar target/petclinic.jar
+```
 
-*Developer-oriented documentation can be published on GitHub, but all product documentation must be published on <https://docs.oracle.com>*
+### With Docker
 
-## Examples
+```
+docker build -t petclinic .
+docker run --rm -p 8080:8080 petclinic:latest
+```
 
-*Describe any included examples or provide a link to a demo/tutorial*
+### Run Integration Tests
 
-## Help
+```
+mvn integration-test
+```
 
-*Inform users on where to get help or how to receive official support from Oracle (if applicable)*
 
-## Contributing
+## Exercise the application
 
-*If your project has specific contribution requirements, update the CONTRIBUTING.md file to ensure those requirements are clearly explained*
+### Basics
 
-This project welcomes contributions from the community. Before submitting a pull request, please [review our contribution guide](./CONTRIBUTING.md)
+OpenAPI REST API documentation: http://localhost:9966/openapi
 
-## Security
+To use UI, clone the [spring-petclinic-angular](https://github.com/spring-petclinic/spring-petclinic-angular) project and run it following instructions in its README.md.
 
-Please consult the [security guide](./SECURITY.md) for our responsible security vulnerability disclosure process
+### Try metrics
 
-## License
+Prometheus Format:
 
-*The correct copyright notice format for both documentation and software is*
-    "Copyright (c) [year,] year Oracle and/or its affiliates."
-*You must include the year the content was first released (on any platform) and the most recent year in which it was revised*
+```
+curl -s -X GET http://localhost:9966/metrics
+# TYPE base:gc_g1_young_generation_count gauge
+```
 
-Copyright (c) 2023 Oracle and/or its affiliates.
+JSON Format:
 
-*Replace this statement if your project is not licensed under the UPL*
+```
+curl -H 'Accept: application/json' -X GET http://localhost:9966/metrics
+```
 
-Released under the Universal Permissive License v1.0 as shown at
-<https://oss.oracle.com/licenses/upl/>.
+### Try health
+
+```
+curl -s -X GET http://localhost:9966/health
+```
+
+## Building a Custom Runtime Image
+
+Build the custom runtime image using the jlink image profile:
+
+```
+mvn package -Pjlink-image
+```
+
+This uses the helidon-maven-plugin to perform the custom image generation.
+After the build completes it will report some statistics about the build including the reduction in image size.
+
+The target/petclinic-jri directory is a self contained custom image of your application. It contains your application,
+its runtime dependencies and the JDK modules it depends on. You can start your application using the provide start script:
+
+```
+./target/petclinic-jri/bin/start
+```
+
+Class Data Sharing (CDS) Archive
+Also included in the custom image is a Class Data Sharing (CDS) archive that improves your application’s startup
+performance and in-memory footprint. You can learn more about Class Data Sharing in the JDK documentation.
+
+The CDS archive increases your image size to get these performance optimizations. It can be of significant size (tens of MB).
+The size of the CDS archive is reported at the end of the build output.
+
+If you’d rather have a smaller image size (with a slightly increased startup time) you can skip the creation of the CDS
+archive by executing your build like this:
+
+```
+mvn package -Pjlink-image -Djlink.image.addClassDataSharingArchive=false
+```
+
+For more information on available configuration options see the helidon-maven-plugin documentation.
+                                

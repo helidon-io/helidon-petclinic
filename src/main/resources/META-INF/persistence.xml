@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+
+    <persistence-unit name="pu1" transaction-type="JTA">
+        <jta-data-source>ds1</jta-data-source>
+        <class>io.helidon.samples.petclinic.model.Specialty</class>
+        <class>io.helidon.samples.petclinic.model.Owner</class>
+        <class>io.helidon.samples.petclinic.model.Vet</class>
+        <class>io.helidon.samples.petclinic.model.PetType</class>
+        <class>io.helidon.samples.petclinic.model.Pet</class>
+        <class>io.helidon.samples.petclinic.model.Visit</class>
+        <properties>
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="jakarta.persistence.schema-generation.create-source" value="script"/>
+            <property name="jakarta.persistence.schema-generation.create-script-source" value="META-INF/initDB.sql" />
+            <property name="jakarta.persistence.sql-load-script-source" value="META-INF/populateDB.sql" />
+<!--
+
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.column_ordering_strategy" value="legacy"/>
+            <property name="jakarta.persistence.sql-load-script-source" value="META-INF/populateDB.sql"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+        </properties>
+    </persistence-unit>
+</persistence>
