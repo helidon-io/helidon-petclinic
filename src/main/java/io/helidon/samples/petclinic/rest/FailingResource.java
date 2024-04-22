@@ -18,6 +18,9 @@ package io.helidon.samples.petclinic.rest;
 import io.helidon.samples.petclinic.rest.api.FailingService;
 import jakarta.ws.rs.core.Response;
 
+/**
+ * @author jdipol
+ */
 public class FailingResource implements FailingService {
     @Override
     public Response failingRequest() {
