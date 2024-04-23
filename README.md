@@ -3,7 +3,7 @@
 Helidon MP version of the Spring Petclinic REST service (see [spring-petclinic-rest](https://github.com/spring-petclinic/spring-petclinic-rest)). **There is no UI**.
 The [spring-petclinic-angular project](https://github.com/spring-petclinic/spring-petclinic-angular) is an Angular front-end application which consumes the REST API.
 
-## Build and run
+## How to Build and Run
 
 ### Locally
 
@@ -90,4 +90,29 @@ mvn package -Pjlink-image -Djlink.image.addClassDataSharingArchive=false
 ```
 
 For more information on available configuration options see the helidon-maven-plugin documentation.
-                                
+
+## Help
+
+* See the [Helidon FAQ](https://github.com/oracle/helidon/wiki/FAQ)
+* Ask questions on Stack Overflow using the [helidon tag](https://stackoverflow.com/tags/helidon)
+* Join us on Slack: [#helidon-users](http://slack.helidon.io)
+
+## Contributing
+
+This project welcomes contributions from the community. Before submitting a pull request, please [review our contribution guide](./CONTRIBUTING.md)
+
+## Security
+
+Please consult the [security guide](./SECURITY.md) for our responsible security vulnerability disclosure process
+
+## License
+
+Copyright (c) 2017, 2024 Oracle and/or its affiliates.
+
+Released under [Apache License 2.0](./LICENSE.txt).
+
+## Third Party Attributions
+
+Developers choosing to distribute a binary implementation of this project are responsible
+for obtaining and providing all required licenses and copyright notices for the
+third-party code used in order to ensure compliance with their respective open source licenses.
