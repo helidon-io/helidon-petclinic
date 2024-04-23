@@ -30,8 +30,6 @@ import java.util.List;
  */
 @Mapper(uses = DtoFactory.class)
 public interface OwnerMapper {
-    OwnerMapper INSTANCE = Mappers.getMapper(OwnerMapper.class);
-
     OwnerDto toOwnerDto(Owner owner);
 
     @Mapping(target = "pets", ignore = true)

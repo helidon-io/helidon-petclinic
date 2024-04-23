@@ -27,8 +27,6 @@ import java.util.Collection;
  */
 @Mapper(uses = DtoFactory.class)
 public interface SpecialtyMapper {
-    SpecialtyMapper INSTANCE = Mappers.getMapper(SpecialtyMapper.class);
-
     Specialty toSpecialty(SpecialtyDto specialtyDto);
 
     SpecialtyDto toSpecialtyDto(Specialty specialty);

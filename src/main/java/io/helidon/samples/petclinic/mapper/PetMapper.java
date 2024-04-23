@@ -29,8 +29,6 @@ import java.util.List;
  */
 @Mapper(uses = DtoFactory.class)
 public interface PetMapper {
-    PetMapper INSTANCE = Mappers.getMapper(PetMapper.class);
-
     PetDto toPetDto(Pet pet);
 
     List<PetDto> toPetDtos(List<Pet> pets);

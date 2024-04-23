@@ -30,8 +30,6 @@ import java.util.List;
  */
 @Mapper(uses = {DtoFactory.class, SpecialtyMapper.class})
 public interface VetMapper {
-    VetMapper INSTANCE = Mappers.getMapper(VetMapper.class);
-
     Vet toVet(VetDto vetDto);
 
     @Mapping(target = "id", ignore = true)

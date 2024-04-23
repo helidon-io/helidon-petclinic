@@ -29,8 +29,6 @@ import java.util.List;
  */
 @Mapper(uses = {DtoFactory.class, PetMapper.class})
 public interface VisitMapper {
-    VisitMapper INSTANCE = Mappers.getMapper(VisitMapper.class);
-
     @Mapping(target = "pet", ignore = true)
     Visit toVisit(VisitDto visitDto);
 

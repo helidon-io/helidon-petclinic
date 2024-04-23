@@ -30,8 +30,6 @@ import java.util.List;
  */
 @Mapper(uses = DtoFactory.class)
 public interface PetTypeMapper {
-    PetTypeMapper INSTANCE = Mappers.getMapper(PetTypeMapper.class);
-
     PetType toPetType(PetTypeDto petTypeDto);
 
     @Mapping(target = "id", ignore = true)
