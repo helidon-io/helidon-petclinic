@@ -44,4 +44,4 @@ mvn ${MAVEN_ARGS} -f ${WS_DIR}/pom.xml \
     install -e \
     -DskipTests \
     -Dmaven.test.skip=true \
-    -Pspotbugs,pipeline
+    -Pspotbugs
