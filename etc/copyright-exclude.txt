@@ -48,6 +48,7 @@ persistence_3_0.xsd
 ._java_
 ._inject_
 .helidon
+# excluded as these contain both Oracle and original copyright notice
 src/main/java/io/helidon/samples/petclinic/model/BaseEntity.java
 src/main/java/io/helidon/samples/petclinic/model/NamedEntity.java
 src/main/java/io/helidon/samples/petclinic/model/Owner.java
