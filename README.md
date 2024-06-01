@@ -3,6 +3,9 @@
 Helidon MP version of the Spring Petclinic REST service (see [spring-petclinic-rest](https://github.com/spring-petclinic/spring-petclinic-rest)). **There is no UI**.
 The [spring-petclinic-angular project](https://github.com/spring-petclinic/spring-petclinic-angular) is an Angular front-end application which consumes the REST API.
 
+> [!NOTE]
+> Read [this article](https://dmitrykornilov.net/2024/06/01/migrating-a-spring-boot-project-to-helidon-helidon-petclinic/) for a detailed explanation of the project and the general process of converting from Spring Boot to Helidon.
+
 ## How to Run
 
 ### Locally
